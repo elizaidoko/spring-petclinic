@@ -37,8 +37,8 @@ node {
 		// Get some code from a GitHub repository
 		git url:'https://github.com/elizaidoko/jarFile.git', branch:'main'
 		// Get the Maven tool
-                fileCopyOperation includes:'target/*.jar', targetLocation:'.'
-                bat(/git add *.jar/)
+                
+                bat(/git add target\/*.jar/)
                 bat(/git commit -a/)
                 bat(/git push/)
           
