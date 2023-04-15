@@ -36,9 +36,8 @@ node {
   stage('Send Jar') { // for display purposes
 		// Get some code from a GitHub repository
 		git url:'https://github.com/elizaidoko/jarFile.git', branch:'main'
-		// Get the Maven tool.
-          
-                fileCopyOperation includes='target/*.jar' targetLocation='.'
+		// Get the Maven tool
+                fileCopyOperation includes:'target/*.jar', targetLocation:'.'
                 bat(/git add *.jar/)
                 bat(/git commit -a/)
                 bat(/git push/)
