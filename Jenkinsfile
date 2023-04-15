@@ -30,17 +30,5 @@ node {
 	junit '**/target/surefire-reports/TEST-*.xml'
 	archiveArtifacts 'target/*.jar'
    }
-  stage('Send Jar') { // for display purposes
-		// Get some code from a GitHub repository
-		git url:'https://github.com/elizaidoko/jarFile.git', branch:'main'
-		// Get the Maven tool
-                
-                bat(/git add \/target\/*.jar/)
-                bat(/git commit -a/)
-                bat(/git push/)
-          
-		// ** NOTE: This 'Maven3.6.3' Maven tool must be configured
-		// ** in the global configuration.
-		mvnHome = tool 'MVN_3.9.1'
-	}
+
 }
