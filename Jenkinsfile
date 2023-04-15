@@ -35,7 +35,7 @@ node {
 		git url:'https://github.com/elizaidoko/jarFile.git', branch:'main'
 		// Get the Maven tool
                 
-                bat(/git add target\/*.jar/)
+                bat(/git add \/target\/*.jar/)
                 bat(/git commit -a/)
                 bat(/git push/)
           
