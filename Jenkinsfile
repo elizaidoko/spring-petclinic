@@ -1,5 +1,5 @@
 node {
-  def mvnHome
+
   stage('SCM') {
     checkout scm
   }
