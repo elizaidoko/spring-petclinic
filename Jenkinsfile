@@ -11,11 +11,11 @@ node {
 	}
   stage('Build') {
 	// Run the maven build
-                sh 'docker run --rm --name pet-clinic -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3-openjdk-17 mvn package
+                sh 'docker run --rm --name pet-clinic -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3-openjdk-17 mvn package'
 
         }
         stage('Test') {
-                sh 'docker run --rm --name pet-clinic -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3-openjdk-17 mvn test
+                sh 'docker run --rm --name pet-clinic -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3-openjdk-17 mvn test'
         }
 //   stage('SonarQube Analysis') {
 //     def mvn = tool 'MVN_3.9.1';
