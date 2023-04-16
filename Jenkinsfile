@@ -19,16 +19,24 @@ node {
 		bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean spring-javaformat:apply package/)
 	    }
         }
-//   stage('SonarQube Analysis') {
-//     def mvn = tool 'MVN_3.9.1';
-//     withSonarQubeEnv() {
-//       bat(/"${mvn}\bin\mvn" clean verify sonar:sonar -Dsonar.projectKey=spring-petclinic/)
+  stage('SonarQube Analysis') {
+    def mvn = tool 'MVN_3.9.1';
+    withSonarQubeEnv() {
+      bat(/"${mvn}\bin\mvn" clean verify sonar:sonar -Dsonar.projectKey=spring-petclinic/)
 			
-//     }
-//   }
+    }
+  }
  stage('Results') {
 	junit '**/target/surefire-reports/TEST-*.xml'
 	archiveArtifacts 'target/*.jar'
    }
 
 }
+
+stage("Quality Gate"){
+  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    if (qg.status != 'OK') {
+      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    }
+  }
