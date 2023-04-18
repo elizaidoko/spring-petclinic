@@ -27,8 +27,9 @@ steps:
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.projectKey=ochanya123_Pet-Clinic-Pipeline
-      sonar.projectName=Pet-Clinic-Pipeline    
+      sonar.projectKey=elizaidoko_spring-petclinic
+      sonar.projectName=spring-petclinic
+    
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
@@ -41,13 +42,6 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
     
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
