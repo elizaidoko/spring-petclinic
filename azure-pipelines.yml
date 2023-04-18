@@ -56,6 +56,5 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'petclinic-hub'
-    repository: 'images'
+    repository: 'elizaidoko/test'
     command: 'push'
-    
