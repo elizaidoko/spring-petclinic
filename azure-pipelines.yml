@@ -29,6 +29,9 @@ steps:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=elizaidoko_spring-petclinic
       sonar.projectName=spring-petclinic
+      sonar.binaries=/target/classes
+      sonar.test.binaries=/targett/test/classes
+      sonar.sources=/src
     
 - task: Maven@4
   inputs:
