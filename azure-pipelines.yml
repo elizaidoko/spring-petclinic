@@ -46,11 +46,13 @@ steps:
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
+
 - task: Docker@2
   inputs:
+    containerRegistry: 'petclinic-hub'
+    repository: 'elizaidoko/test'
     command: 'build'
-    Dockerfile: 'Dockerfile'
-
+    Dockerfile: '**/Dockerfile'
 - task: Docker@2
   inputs:
     containerRegistry: 'petclinic-hub'
