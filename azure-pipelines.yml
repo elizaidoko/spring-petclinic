@@ -54,9 +54,19 @@ steps:
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: 'whatever'
+
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker-service'
     repository: 'elizaidoko/test'
     command: 'push'
     tags: 'whatever'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    appType: 'webAppContainer'
+    WebAppName: 'petclini'
+    DockerNamespace: 'elizaidoko'
+    DockerRepository: 'test'
+    DockerImageTag: 'whatever'
+    StartupCommand: 'java -jar target/spring-petclinic-3.0.0-SNAPSHOT.jar'
