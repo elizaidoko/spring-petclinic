@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+- other
 
 pool:
   vmImage: ubuntu-latest
@@ -49,14 +49,25 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'petclinic-hub'
+    containerRegistry: 'Docker-service'
     repository: 'elizaidoko/test'
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: 'whatever'
+
 - task: Docker@2
   inputs:
-    containerRegistry: 'petclinic-hub'
+    containerRegistry: 'Docker-service'
     repository: 'elizaidoko/test'
     command: 'push'
     tags: 'whatever'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(0d310dae-c020-4fdf-ba16-c290af4d9792)'
+    appType: 'webAppContainer'
+    WebAppName: 'petclini'
+    DockerNamespace: 'elizaidoko'
+    DockerRepository: 'test'
+    DockerImageTag: 'whatever'
+    StartupCommand: 'java -jar target/spring-petclinic-3.0.0-SNAPSHOT.jar'
